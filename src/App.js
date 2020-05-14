@@ -5,11 +5,26 @@ import FileZone from "./file-zone/FileZone";
 import getMockText from './text.service';
 
 class App extends Component {
-    getText() {
-        getMockText().then(function (result) {
-            console.log(result);
-        });
-    }
+  state = {
+    textArea: null,
+    synonym: '',
+  }
+
+  componentDidMount() {
+    this.getText();
+  }
+
+
+  getText = () => {
+      getMockText().then((synonym) => {
+        this.setState({ synonym });
+      });
+  }
+
+  textContainer = (textArea) => {
+    this.setState({ textArea });
+  }
+
     render() {
         return (
             <div className="App">
@@ -17,8 +32,8 @@ class App extends Component {
                     <span>Simple Text Editor</span>
                 </header>
                 <main>
-                    <ControlPanel/>
-                    <FileZone/>
+                    <ControlPanel textArea={this.state.textArea} />
+                    <FileZone getTextContainer={this.textContainer} synonyms={this.state.synonyms} />
                 </main>
             </div>
         );

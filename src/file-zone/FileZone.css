@@ -12,4 +12,7 @@
     flex-grow: 1;
     background-color: #fff;
     border: 1px solid #e4dede;
+    padding: 20px;
+    box-sizing: border-box;
+    outline: none;
 }
